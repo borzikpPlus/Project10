@@ -61,7 +61,7 @@ int MyString::MyChr(char c)
 		}
 	}
 	return -1;
-	
+
 }
 
 int MyString::MyStrLen()
@@ -71,8 +71,43 @@ int MyString::MyStrLen()
 
 void MyString::MyStrCat(MyString& obj)
 {
-	strcat_s(this->str, strlen(obj.str) + strlen(this->str) +1, obj.str);
+	strcat_s(this->str, strlen(obj.str) + strlen(this->str) + 1, obj.str);
 }
+
+MyString::MyString(MyString&& obj)
+{
+	str = obj.str;
+	obj.str = nullptr;
+	length = obj.length;
+	obj.length = length;
+	std::cout << "Move constructor!\n";
+}
+
+void MyString::MyDelChr(char c)
+{
+	int len = strlen(this->str);
+	char* result_str = new char[len + 1];
+
+
+	int j = 0;
+	for (int i = 0; i < len; ++i)
+	{
+		if (this->str[i] != c)
+		{
+			result_str[j++] = this->str[i];
+		}
+	}
+	result_str[j] = '\0';
+
+	delete[] this->str;
+	this->str = result_str;
+}
+
+int MyString::MyStrCmp(MyString& obj)
+{
+	return strcmp(this->str, obj.str);
+}
+
 
 MyString::MyString(const MyString& obj)
 {
@@ -82,5 +117,3 @@ MyString::MyString(const MyString& obj)
 
 	std::cout << "Copy costructor\n";
 }
-
-
