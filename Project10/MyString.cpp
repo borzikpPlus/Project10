@@ -7,12 +7,14 @@ MyString::MyString()
 {
 	length = 89;
 	str = new char [length] {};
+	count++;
 }
 
 MyString::MyString(int size)
 {
 	length = size;
 	str = new char[length] {};
+	count++; // добавьте это
 }
 
 MyString::MyString(const char* st)
@@ -20,7 +22,9 @@ MyString::MyString(const char* st)
 	length = strlen(st);
 	str = new char[length + 1];
 	strcpy_s(str, length + 1, st);
+	count++; // добавьте это
 }
+
 
 MyString::~MyString()
 {
@@ -55,7 +59,7 @@ int MyString::MyChr(char c)
 {
 	for (int i = 0; i < strlen(this->str); ++i)
 	{
-		if (this->str[i] == c);
+		if (this->str[i] == c)
 		{
 			return i;
 		}
@@ -107,6 +111,12 @@ int MyString::MyStrCmp(MyString& obj)
 {
 	return strcmp(this->str, obj.str);
 }
+
+void MyString::PrintCount()
+{
+	std::cout << "Count -> " << count << std::endl;
+}
+int MyString::count = 0;
 
 
 MyString::MyString(const MyString& obj)

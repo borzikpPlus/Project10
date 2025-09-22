@@ -4,6 +4,7 @@ class MyString
 	char* str; // указатель на строку
 	int length; // длина строки
 public:
+	static int count;
 	MyString();
 	MyString(int size);
 	MyString(const char* st);
@@ -24,6 +25,7 @@ public:
 	void MyDelChr(char c); // удаляет указанный символ 
 	int MyStrCmp(MyString& b); // сравнение строк 
 
+	static void PrintCount();
 
 	// методы класса
 };

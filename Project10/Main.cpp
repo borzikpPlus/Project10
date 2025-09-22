@@ -21,11 +21,12 @@ int main()
 
     MyString test1("Hello world");
     MyString test2("Hello world");
-
-
     cout << test1.MyStrCmp(test2) << endl;
 
     MyString obj3 = move(obj2);
+
+    MyString::PrintCount();
+
 
 
 }
