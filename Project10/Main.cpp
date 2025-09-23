@@ -35,10 +35,14 @@ int main()
     MyString rez2 = test1 + test2;
     rez2.Print();
 
-    MyString rez3 = test1 - "H";
+    MyString rez3 = test1 - "Hel";
     rez3.Print();
 
+	MyString rez4 = test1 - test2;
+	rez4.Print();
 
+	test1.Print();
+	test2.Print();
     /*MyString rez2 = test1 + "\tWW";
     rez2.Print();*/
 

@@ -33,7 +33,10 @@ MyString::~MyString()
 
 void MyString::Print()
 {
-	std::cout << str << std::endl;
+	if (str && str[0] != '\0')
+		std::cout << str << std::endl;
+	else
+		std::cout << "[empty string]" << std::endl;
 }
 
 void MyString::MyStrcpy(MyString& obj)
@@ -119,8 +122,6 @@ void MyString::PrintCount()
 int MyString::count = 0;
 
 
-
-
 MyString MyString::operator+(const MyString& obj)
 {
 	size_t len1 = strlen(this->str);
@@ -145,36 +146,24 @@ MyString MyString::operator+(const char* obj)
 	return result;
 }
 
-
 MyString MyString::operator-(MyString& b)
 {
-
-	return result;
-}
-
-
-MyString MyString::operator-(char c)
-{
-	int len = strlen(this->str);
-	char* result_str = new char[len + 1];
-
-
-	int j = 0;
-	for (int i = 0; i < len; ++i)
+	MyString result(*this);
+	for (int i = 0; i < strlen(b.str); ++i)
 	{
-		if (this->str[i] != c)
-		{
-			result_str[j++] = this->str[i];
-		}
+		result.MyDelChr(b.str[i]);
 	}
-	result_str[j] = '\0';
-
-	delete[] this->str;
-	this->str = result_str;
-
-	return MyString(result_str);
+	return std::move(result);
 }
-
+MyString MyString::operator-(const char* obj)
+{
+	MyString result(*this);
+	for (int i = 0; i < strlen(obj); ++i)
+	{
+		result.MyDelChr(obj[i]);
+	}
+	return std::move(result);
+}
 
 
 
