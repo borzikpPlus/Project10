@@ -10,7 +10,7 @@ public:
 	MyString(const char* st);
 	~MyString();
 
-	void print();
+	void Print();
 
 	MyString(const MyString& obj);
 
@@ -26,6 +26,13 @@ public:
 	int MyStrCmp(MyString& b); // сравнение строк 
 
 	static void PrintCount();
+
+	MyString operator+(const char* obj);
+	MyString operator+(const MyString& obj);
+	MyString operator-(char c);
+	MyString operator-(MyString& b);
+
+
 
 	// методы класса
 };

@@ -31,7 +31,7 @@ MyString::~MyString()
 	delete[] str;
 }
 
-void MyString::print()
+void MyString::Print()
 {
 	std::cout << str << std::endl;
 }
@@ -119,6 +119,65 @@ void MyString::PrintCount()
 int MyString::count = 0;
 
 
+
+
+MyString MyString::operator+(const MyString& obj)
+{
+	size_t len1 = strlen(this->str);
+	size_t len2 = strlen(obj.str);
+
+	char* newStr = new char[len1 + len2 + 1];
+
+	strcpy_s(newStr, len1 + 1, this->str);
+	strcat_s(newStr, len1 + len2 + 1, obj.str);
+
+	MyString result(newStr);
+	delete[] newStr;
+
+	return result;
+}
+
+MyString MyString::operator+(const char* obj)
+{
+	MyString result(length + 1 + strlen(obj) + 1);
+	strcpy_s(result.str, length + 1, str);
+	strcat_s(result.str, length + strlen(obj) + 2, obj);
+	return result;
+}
+
+
+MyString MyString::operator-(MyString& b)
+{
+
+	return result;
+}
+
+
+MyString MyString::operator-(char c)
+{
+	int len = strlen(this->str);
+	char* result_str = new char[len + 1];
+
+
+	int j = 0;
+	for (int i = 0; i < len; ++i)
+	{
+		if (this->str[i] != c)
+		{
+			result_str[j++] = this->str[i];
+		}
+	}
+	result_str[j] = '\0';
+
+	delete[] this->str;
+	this->str = result_str;
+
+	return MyString(result_str);
+}
+
+
+
+
 MyString::MyString(const MyString& obj)
 {
 	length = obj.length;
@@ -127,3 +186,5 @@ MyString::MyString(const MyString& obj)
 
 	std::cout << "Copy costructor\n";
 }
+
+
