@@ -138,24 +138,6 @@ MyString MyString::operator+(const MyString& obj)
 	return result;
 }
 
-//MyString MyString::operator++()
-//{
-//	char* result_str = new char[strlen(str)+2];
-//	strcpy_s(result_str, strlen(str)+1 , str);
-//	result_str[strlen(result_str)] = ' ';
-//
-//	delete[]str;
-//
-//	char* str = new char[strlen(result_str) + 1];
-//	strcpy_s(str, strlen(result_str), result_str);
-//	
-//	delete[]result_str;
-//
-//	return *this;
-//
-//
-//}
-
 MyString& MyString::operator++()
 {
 	int old_len = strlen(str);
@@ -180,7 +162,7 @@ MyString& MyString::operator--()
 	for (int i = 0; i < len - 1; ++i)
 		new_str[i] = str[i];
 
-	new_str[len - 1] = '\0';
+	new_str[len-1] = '\0';
 
 	delete[] str;
 	str = new_str;
