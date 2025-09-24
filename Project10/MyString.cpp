@@ -138,6 +138,77 @@ MyString MyString::operator+(const MyString& obj)
 	return result;
 }
 
+//MyString MyString::operator++()
+//{
+//	char* result_str = new char[strlen(str)+2];
+//	strcpy_s(result_str, strlen(str)+1 , str);
+//	result_str[strlen(result_str)] = ' ';
+//
+//	delete[]str;
+//
+//	char* str = new char[strlen(result_str) + 1];
+//	strcpy_s(str, strlen(result_str), result_str);
+//	
+//	delete[]result_str;
+//
+//	return *this;
+//
+//
+//}
+
+MyString& MyString::operator++()
+{
+	int old_len = strlen(str);
+	char* new_str = new char[old_len + 2];
+
+	strcpy_s(new_str, old_len + 1, str);
+	new_str[old_len] = '+';
+	new_str[old_len + 1] = '\0';
+
+	delete[] str;                          
+	str = new_str;                         
+
+	return *this;                          
+}
+
+MyString& MyString::operator--()
+{
+	int len = strlen(str);
+
+	char* new_str = new char[len];
+
+	for (int i = 0; i < len - 1; ++i)
+		new_str[i] = str[i];
+
+	new_str[len - 1] = '\0';
+
+	delete[] str;
+	str = new_str;
+
+	return *this;
+}
+
+
+MyString& MyString::operator+=(const char* obj)
+{
+	int old_len = strlen(this->str);
+	int add_len = strlen(obj);
+	int new_len = old_len + add_len + 1;
+
+	char* new_str = new char[new_len];
+
+	strcpy_s(new_str, new_len, this->str);
+
+	strcat_s(new_str,new_len ,obj);
+
+	delete[] this->str;
+	this-> str = new_str;
+
+	return *this;
+}
+
+
+
 MyString MyString::operator+(const char* obj)
 {
 	MyString result(length + 1 + strlen(obj) + 1);
@@ -145,6 +216,7 @@ MyString MyString::operator+(const char* obj)
 	strcat_s(result.str, length + strlen(obj) + 2, obj);
 	return result;
 }
+
 
 MyString MyString::operator-(MyString& b)
 {
@@ -165,6 +237,26 @@ MyString MyString::operator-(const char* obj)
 	return std::move(result);
 }
 
+MyString& MyString::operator=(const MyString& obj2)
+{
+	//1. obj = obj;
+	if (this == &obj2)
+	{
+		return *this;
+	}
+	//2. obj = obj1;
+	if (str != nullptr)
+	{
+		delete[] str;
+	}
+	str = new char[strlen(obj2.str) + 1];
+	strcpy_s(str, strlen(obj2.str)+1,obj2.str);
+	length = obj2.length;
+	std::cout << "Copy = \n";
+	//3
+	return *this;
+
+}
 
 
 MyString::MyString(const MyString& obj)

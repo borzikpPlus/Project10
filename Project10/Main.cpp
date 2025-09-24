@@ -30,21 +30,33 @@ int main()
     MyString test3("Hello world");
     MyString test4("Hello world");*/
 
-    MyString rez1 = test1 + "Valera";
-    rez1.Print();
-    MyString rez2 = test1 + test2;
-    rez2.Print();
+ //   MyString rez1 = test1 + "Valera";
+ //   rez1.Print();
+ //   MyString rez2 = test1 + test2;
+ //   rez2.Print();
 
-    MyString rez3 = test1 - "Hel";
-    rez3.Print();
+ //   MyString rez3 = test1 - "Hel";
+ //   rez3.Print();
 
-	MyString rez4 = test1 - test2;
-	rez4.Print();
+	//MyString rez4 = test1 - test2;
+	//rez4.Print();
 
-	test1.Print();
-	test2.Print();
     /*MyString rez2 = test1 + "\tWW";
     rez2.Print();*/
 
 
+    cout << endl << endl;
+
+
+    MyString a("Hello");
+    MyString b("world");
+
+    ++a;
+    a.Print();
+    --a;
+    --a;
+    a.Print();
+    a += "WOw";
+    a.Print();
+    a = b;
 }

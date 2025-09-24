@@ -30,10 +30,14 @@ public:
 	MyString operator+(const char* obj);
 	MyString operator+(const MyString& obj);
 
+	MyString& operator++();
+	MyString& operator--();
+	MyString& operator+=(const char*);
+		 
 	MyString operator-(const char* obj);
 	MyString operator-(MyString& b);
 
-
+	MyString& operator=(const MyString& obj);
 
 	// методы класса
 };
